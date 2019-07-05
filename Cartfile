@@ -1,0 +1,4 @@
+github "Alamofire/Alamofire" ~> 4.7.2 
+github "onevcat/Kingfisher" ~> 5.0
+
+
