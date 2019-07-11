@@ -9,6 +9,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Prompt-Regular.ttf">
+            <string>Prompt-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Navigation Controller-->
         <scene sceneID="YLk-fs-ICD">
@@ -53,7 +58,7 @@
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QkS-YV-nCq">
                                                     <rect key="frame" x="30" y="221" width="354" height="215"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="Prompt-Regular" family="Prompt" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -86,7 +91,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="8B6-HD-akS">
-                        <barButtonItem key="rightBarButtonItem" title="create" id="Ps0-BP-URi">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ps0-BP-URi">
                             <connections>
                                 <segue destination="oK5-vC-lXQ" kind="show" id="jFk-zg-f6l"/>
                             </connections>
@@ -94,6 +99,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="articleTableView" destination="gIz-nr-nar" id="Kqw-xs-viQ"/>
+                        <segue destination="xnu-ln-rg1" kind="show" identifier="show" id="Xf3-qK-DB9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -109,25 +115,47 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eBN-24-Xre">
-                                <rect key="frame" x="20" y="388" width="374" height="30"/>
+                                <rect key="frame" x="20" y="411" width="374" height="30"/>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Prompt-Regular" family="Prompt" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BGl-zb-RpX">
-                                <rect key="frame" x="20" y="458" width="374" height="150"/>
+                                <rect key="frame" x="20" y="481" width="374" height="150"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="i0X-rv-iuj"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Prompt-Regular" family="Prompt" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uHs-gH-EV3">
-                                <rect key="frame" x="182.5" y="633" width="49" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uHs-gH-EV3" customClass="CustomBorder" customModule="iOS_CRUD" customModuleProvider="target">
+                                <rect key="frame" x="20" y="656" width="374" height="38"/>
+                                <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Prompt-Regular" family="Prompt" pointSize="17"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Submit"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderRadius">
+                                        <real key="value" value="17"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="clickSubmit" destination="oK5-vC-lXQ" eventType="touchUpInside" id="Cig-f8-kb8"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fOd-Me-8IT">
+                                <rect key="frame" x="50" y="138" width="314" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="Sqw-Qo-9Ur"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SaE-2V-Gt3">
+                                <rect key="frame" x="162.5" y="353" width="89" height="38"/>
+                                <fontDescription key="fontDescription" name="Prompt-Regular" family="Prompt" pointSize="17"/>
+                                <state key="normal" title="add image"/>
+                                <connections>
+                                    <action selector="clickAddImage" destination="oK5-vC-lXQ" eventType="touchUpInside" id="XpU-Do-6aX"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -135,23 +163,129 @@
                         <constraints>
                             <constraint firstItem="BGl-zb-RpX" firstAttribute="top" secondItem="eBN-24-Xre" secondAttribute="bottom" constant="40" id="1xe-Vg-I3L"/>
                             <constraint firstItem="uHs-gH-EV3" firstAttribute="top" secondItem="BGl-zb-RpX" secondAttribute="bottom" constant="25" id="3iE-fa-eQ9"/>
+                            <constraint firstItem="SaE-2V-Gt3" firstAttribute="centerX" secondItem="PDm-lv-hI7" secondAttribute="centerX" id="44X-sI-UEy"/>
                             <constraint firstItem="Ogo-Fa-d42" firstAttribute="trailing" secondItem="BGl-zb-RpX" secondAttribute="trailing" constant="20" id="4QY-y3-bmB"/>
                             <constraint firstItem="Ogo-Fa-d42" firstAttribute="trailing" secondItem="eBN-24-Xre" secondAttribute="trailing" constant="20" id="4sj-12-ZVa"/>
-                            <constraint firstItem="eBN-24-Xre" firstAttribute="top" secondItem="Ogo-Fa-d42" secondAttribute="top" constant="300" id="KBB-Pe-9T0"/>
+                            <constraint firstItem="fOd-Me-8IT" firstAttribute="top" secondItem="Ogo-Fa-d42" secondAttribute="top" constant="50" id="5YX-r3-FyB"/>
+                            <constraint firstItem="uHs-gH-EV3" firstAttribute="leading" secondItem="Ogo-Fa-d42" secondAttribute="leading" constant="20" id="FRw-H9-rhG"/>
                             <constraint firstItem="BGl-zb-RpX" firstAttribute="leading" secondItem="Ogo-Fa-d42" secondAttribute="leading" constant="20" id="QaS-UJ-kui"/>
-                            <constraint firstItem="uHs-gH-EV3" firstAttribute="centerX" secondItem="PDm-lv-hI7" secondAttribute="centerX" id="sUK-HN-iaK"/>
+                            <constraint firstItem="Ogo-Fa-d42" firstAttribute="trailing" secondItem="uHs-gH-EV3" secondAttribute="trailing" constant="20" id="X0X-Wu-3G2"/>
+                            <constraint firstItem="Ogo-Fa-d42" firstAttribute="trailing" secondItem="fOd-Me-8IT" secondAttribute="trailing" constant="50" id="aCQ-F5-jq7"/>
+                            <constraint firstItem="SaE-2V-Gt3" firstAttribute="top" secondItem="fOd-Me-8IT" secondAttribute="bottom" constant="15" id="th5-8e-5vA"/>
                             <constraint firstItem="eBN-24-Xre" firstAttribute="leading" secondItem="Ogo-Fa-d42" secondAttribute="leading" constant="20" id="u2C-Nf-87Z"/>
+                            <constraint firstItem="eBN-24-Xre" firstAttribute="top" secondItem="SaE-2V-Gt3" secondAttribute="bottom" constant="20" id="ubS-Pz-Xm0"/>
+                            <constraint firstItem="fOd-Me-8IT" firstAttribute="leading" secondItem="Ogo-Fa-d42" secondAttribute="leading" constant="50" id="vXW-aN-4Id"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ogo-Fa-d42"/>
                     </view>
                     <connections>
+                        <outlet property="articleImageView" destination="fOd-Me-8IT" id="6TP-lY-V25"/>
                         <outlet property="detailTextView" destination="BGl-zb-RpX" id="Bn9-8F-PuW"/>
+                        <outlet property="submitButton" destination="uHs-gH-EV3" id="oAE-kY-i7S"/>
                         <outlet property="titleTextfiled" destination="eBN-24-Xre" id="WOq-Sl-s5W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TeT-Mb-UwX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="965" y="142"/>
+            <point key="canvasLocation" x="909" y="-523"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="rpU-nh-jvw">
+            <objects>
+                <viewController id="xnu-ln-rg1" customClass="DetailController" customModule="iOS_CRUD" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mr5-Wm-eXz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iFS-pt-7v2">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XlG-Kb-N75">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="412"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="chT-56-DSN" customClass="CircleImage" customModule="iOS_CRUD" customModuleProvider="target">
+                                                <rect key="frame" x="107" y="50" width="200" height="200"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="200" id="Fkg-en-gDz"/>
+                                                    <constraint firstAttribute="height" constant="200" id="oDi-Ur-BYg"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderRadius">
+                                                        <real key="value" value="100"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1qy-gR-bkD">
+                                                <rect key="frame" x="20" y="280" width="374" height="26"/>
+                                                <fontDescription key="fontDescription" name="Prompt-Regular" family="Prompt" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tts-Ge-Mi3">
+                                                <rect key="frame" x="20" y="336" width="374" height="26"/>
+                                                <fontDescription key="fontDescription" name="Prompt-Regular" family="Prompt" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="chT-56-DSN" firstAttribute="centerX" secondItem="XlG-Kb-N75" secondAttribute="centerX" id="9pR-De-Me3"/>
+                                            <constraint firstAttribute="trailing" secondItem="1qy-gR-bkD" secondAttribute="trailing" constant="20" id="GlC-KL-0k3"/>
+                                            <constraint firstAttribute="trailing" secondItem="Tts-Ge-Mi3" secondAttribute="trailing" constant="20" id="IBc-ua-M6I"/>
+                                            <constraint firstItem="chT-56-DSN" firstAttribute="top" secondItem="XlG-Kb-N75" secondAttribute="top" constant="50" id="Kpe-lE-1Bs"/>
+                                            <constraint firstItem="1qy-gR-bkD" firstAttribute="top" secondItem="chT-56-DSN" secondAttribute="bottom" constant="30" id="N7S-oZ-47C"/>
+                                            <constraint firstItem="Tts-Ge-Mi3" firstAttribute="leading" secondItem="XlG-Kb-N75" secondAttribute="leading" constant="20" id="R2H-vF-MF5"/>
+                                            <constraint firstItem="Tts-Ge-Mi3" firstAttribute="top" secondItem="1qy-gR-bkD" secondAttribute="bottom" constant="30" id="XaO-d0-ReD"/>
+                                            <constraint firstAttribute="bottom" secondItem="Tts-Ge-Mi3" secondAttribute="bottom" constant="50" id="YOC-LA-dbc"/>
+                                            <constraint firstItem="1qy-gR-bkD" firstAttribute="leading" secondItem="XlG-Kb-N75" secondAttribute="leading" constant="20" id="lZi-Ec-bKh"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="XlG-Kb-N75" secondAttribute="trailing" id="Kjb-8T-hMh"/>
+                                    <constraint firstItem="XlG-Kb-N75" firstAttribute="leading" secondItem="iFS-pt-7v2" secondAttribute="leading" id="MXF-LS-cfp"/>
+                                    <constraint firstItem="XlG-Kb-N75" firstAttribute="top" secondItem="iFS-pt-7v2" secondAttribute="top" id="Y8G-vv-0Tz"/>
+                                    <constraint firstAttribute="bottom" secondItem="XlG-Kb-N75" secondAttribute="bottom" id="y3H-gJ-RrP"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="XlG-Kb-N75" firstAttribute="width" secondItem="mr5-Wm-eXz" secondAttribute="width" id="LW6-MQ-g2D"/>
+                            <constraint firstItem="iFS-pt-7v2" firstAttribute="top" secondItem="gNG-qr-Tb4" secondAttribute="top" id="RJ7-SG-kuT"/>
+                            <constraint firstItem="iFS-pt-7v2" firstAttribute="leading" secondItem="gNG-qr-Tb4" secondAttribute="leading" id="flI-GZ-sjU"/>
+                            <constraint firstItem="gNG-qr-Tb4" firstAttribute="bottom" secondItem="iFS-pt-7v2" secondAttribute="bottom" id="tVK-pn-2iu"/>
+                            <constraint firstItem="gNG-qr-Tb4" firstAttribute="trailing" secondItem="iFS-pt-7v2" secondAttribute="trailing" id="wRZ-xs-wJx"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="gNG-qr-Tb4"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="4To-jO-I8T">
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="edit" id="tj4-h9-hAQ">
+                                <connections>
+                                    <segue destination="oK5-vC-lXQ" kind="show" identifier="edit" id="3RI-t5-B11"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="trash" id="26k-iV-5Aa">
+                                <connections>
+                                    <action selector="clickDelete" destination="xnu-ln-rg1" id="tXv-8X-uUE"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="articleImageView" destination="chT-56-DSN" id="Ivp-M6-dO8"/>
+                        <outlet property="detailLabel" destination="Tts-Ge-Mi3" id="RIg-Tt-5kC"/>
+                        <outlet property="titleLabel" destination="1qy-gR-bkD" id="Dto-th-Cbb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hf0-bG-0A2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="908.69565217391312" y="138.61607142857142"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="3RI-t5-B11"/>
+    </inferredMetricsTieBreakers>
 </document>

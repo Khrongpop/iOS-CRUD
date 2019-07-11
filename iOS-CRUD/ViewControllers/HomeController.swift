@@ -35,28 +35,12 @@ class HomeController: UIViewController {
         }
     }
     
-    func alertDelete(id: Int) {
-        let alert = UIAlertController(title: "Delete Article", message: nil, preferredStyle: .alert)
-        let deleteAction = UIAlertAction(title: "Delete", style: .default) { (_) in
-            self.removeArticle(id: id)
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default)
-        
-        alert.addAction(cancelAction)
-        alert.addAction(deleteAction)
-        
-        present(alert,animated: true)
-    }
+  
     
-    func removeArticle(id: Int) {
-        let parm = ["id":id]
-        ArticleService.deleteArticle(parameters: parm) { (string) in
-            let alert = UIAlertController(title: string, message: nil, preferredStyle: .alert)
-            let cancelAction = UIAlertAction(title: "OK", style: .default)
-            alert.addAction(cancelAction)
-            self.fetchArticle()
-            self.present(alert,animated: true)
-        }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "show", let vc = segue.destination as? DetailController ,let article = sender as? Article else { return }
+        vc.articleID = article.id
+        
     }
 }
 extension HomeController: UITableViewDelegate ,UITableViewDataSource {
@@ -82,6 +66,7 @@ extension HomeController: UITableViewDelegate ,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let article = articles[indexPath.row]
-        alertDelete(id: article.id)
+        performSegue(withIdentifier: "show", sender: article)
+//        alertDelete(id: article.id)
     }
 }

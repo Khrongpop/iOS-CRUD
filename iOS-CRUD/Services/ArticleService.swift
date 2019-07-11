@@ -31,6 +31,25 @@ class ArticleService {
         })
     }
     
+    class func getArticle(withID id: Int, onSuccess: @escaping(Article) -> (), onError: @escaping(Error) -> () ) {
+        
+        Alamofire.request("\(UrlHelper.baseURL)detail/?id=\(id)", method: .get).responseData(completionHandler: { (resData) in
+            if let data = resData.data {
+                do {
+                    let decode = JSONDecoder()
+                    let article = try decode.decode(Article.self, from: data)
+                    onSuccess(article)
+                } catch {
+                    print("error : \(error)")
+                    print("error.localizedDescription : \(error.localizedDescription)")
+                    onError(error)
+                }
+            } else if let error = resData.error {
+                onError(error)
+            }
+        })
+    }
+    
     class func createArticle(parameters: [String:Any] ,completion: @escaping(String) -> ()) {
         Alamofire.request("\(UrlHelper.baseURL)create/", method: .post, parameters: parameters).responseJSON { (resJson) in
             
@@ -104,7 +123,7 @@ class ArticleService {
         
     }
     
-    class func updateArticle(withImage image: UIImage, parameters: [String:Any] ,completion: @escaping(String,String) -> ()) {
+    class func updateArticle(withImage image: UIImage, parameters: [String:Any] ,completion: @escaping(String) -> ()) {
         
         
         let date = Date()
@@ -132,14 +151,14 @@ class ArticleService {
                 upload.responseJSON { resJson in
                     print("Succesfully uploaded")
                     guard let json = resJson.value as? NSDictionary ,
-                        let message = json["message"] as? String ,
-                        let image = json["image"] as? String
+                        let message = json["message"] as? String
+//                        let image = json["image"] as? String
                         else { return }
-                    completion(message,image)
+                    completion(message)
                 }
             case .failure(let error):
                 print("Error in upload: \(error.localizedDescription)")
-                completion("\(error.localizedDescription)","")
+                completion("\(error.localizedDescription)")
             }
         }
         
